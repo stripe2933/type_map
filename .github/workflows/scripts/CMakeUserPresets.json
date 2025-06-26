@@ -1,0 +1,35 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "ci",
+      "inherits": "default",
+      "cacheVariables": {
+        "TYPE_MAP_TEST": "ON"
+      }
+    },
+    {
+      "name": "windows-latest-msvc",
+      "inherits": "ci"
+    },
+    {
+      "name": "ubuntu-latest-gcc",
+      "inherits": "ci",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "/usr/bin/gcc-14",
+        "CMAKE_CXX_COMPILER": "/usr/bin/g++-14",
+        "TYPE_MAP_USE_STD_MODULE": "OFF"
+      }
+    },
+    {
+      "name": "ubuntu-latest-clang",
+      "inherits": "ci",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "/usr/bin/clang",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+        "CMAKE_CXX_FLAGS": "-stdlib=libc++",
+        "CMAKE_EXE_LINKER_FLAGS": "-stdlib=libc++ -lc++abi"
+      }
+    }
+  ]
+}
